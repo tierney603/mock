@@ -1,15 +1,6 @@
 module.exports = {
     devServer: {
-        //before: require('./mock/index.js')//引入mock/index.js
-        before: function (app) {
-            app.get('/user/userinfo', (req, res) => {
-                res.send({
-                    name: 'hwj',
-                    jog: '1111'
-                })
-            })
-        }
-
+        before: require('./mock/index.js')//引入mock/index.js
     }
 }
 

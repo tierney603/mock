@@ -4,8 +4,10 @@ import router from './router'
 import store from './store'
 Vue.config.productionTip = false
 
-process.env.VUE_APP_MOCK === 'true' && require('../mock')
 
+if (process.env.NODE_ENV !== 'production' || process.env.VUE_APP_PREVIEW === 'true') {
+  require("./mock");
+}
 
 new Vue({
   router,

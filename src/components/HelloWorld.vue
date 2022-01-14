@@ -1,5 +1,7 @@
 <template>
-  <div class="hello"></div>
+  <div class="hello">
+    <button @click="login">登录</button>
+  </div>
 </template>
 <script>
 import axios from "axios";
@@ -8,17 +10,23 @@ export default {
   props: {
     msg: String,
   },
-  mounted() {
-    axios
-      .get("/getDataList")
-      .then((res) => {
-        console.log(res);
-      })
-      .catch(function (error) {
-        // 请求失败处理
-        console.log(error);
-      });
+  methods: {
+    login() {
+      axios
+        .post("/user/login")
+        .then((res) => {
+          console.log(res);
+          if (res.data.errCode === 0) {
+            this.$router.push("/about");
+          }
+        })
+        .catch(function (error) {
+          // 请求失败处理
+          console.log(error);
+        });
+    },
   },
+  mounted() {},
 };
 </script>
 
